@@ -1,0 +1,38 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model user {
+  id           Int        @id @default(autoincrement())
+  nama         String     @db.VarChar(255)
+  NISN         Int
+  osis_vote    calon_osis @relation(fields: [pilihan_osis], references: [osis_id])
+  mpk_vote     calon_mpk  @relation(fields: [pilihan_mpk], references: [mpk_id])
+  pilihan_osis Int
+  pilihan_mpk  Int
+  isvoted      Boolean
+}
+
+model calon_mpk {
+  mpk_id     Int    @id @default(autoincrement())
+  nama_ketua String @db.VarChar(255)
+  nama_wakil String @db.VarChar
+  votes      Int
+  user       user[]
+}
+
+model calon_osis {
+  osis_id    Int    @id @default(autoincrement())
+  nama_ketua String @db.VarChar(255)
+  nama_wakil String @db.VarChar(255)
+  votes      Int
+  user       user[]
+}
