@@ -1,17 +1,7 @@
 "use server";
 import { PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient();
-export async function updateOsis(id: number, userNISN: number, OsisID: number) {
-  await prisma.calon_osis.update({
-    where: {
-      osis_id: OsisID,
-    },
-    data: {
-      votes: {
-        increment: 1,
-      },
-    },
-  });
+export async function updateOsis(id: number, userNISN: number, OsisID: number) { 
   const updtusr = await prisma.user.update({
     where: {
       id: id,
@@ -26,5 +16,5 @@ export async function updateOsis(id: number, userNISN: number, OsisID: number) {
   } else {
     console.log("nay");
   }
-  return(updtusr)
+  return updtusr
 }

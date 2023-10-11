@@ -11,7 +11,7 @@ export async function handlelog(Fdata: FormData) {
     where: {
       nama: namedat,
       NISN: passdat,
-    }, 
+    },  
   });
   Ldata ? console.log("yep") : console.log("nope");
   return Ldata;

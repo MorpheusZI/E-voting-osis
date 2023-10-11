@@ -1,17 +1,7 @@
 "use server";
 import { PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient();
-export async function updateMPK(id: number, userNISN: number, mpkID: number) {
-  await prisma.calon_mpk.update({
-    where: {
-      mpk_id: mpkID,
-    },
-    data: {
-      votes: {
-        increment: 1,
-      },
-    },
-  });
+export async function updateMPK(id: number, userNISN: number, mpkID: number) { 
   const updtusr = await prisma.user.update({
     where: {
       id: id,
@@ -22,8 +12,9 @@ export async function updateMPK(id: number, userNISN: number, mpkID: number) {
     },
   });
   if (updtusr) {
-    console.log("yay");
+    console.log("yay")
   } else {
     console.log("nay");
   }
+  return updtusr
 }

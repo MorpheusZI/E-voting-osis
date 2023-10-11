@@ -7,9 +7,18 @@ const config: Config = {
     './src/app/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   theme: {
+    screens: {
+      "phone": "400px",
+      "sphone" : "380px"
+    },
+    fontFamily: {
+      montserrat :["Montserrat,sans-serif"]
+    },
     extend: {
-      fontFamily: {
-        montserrat :["Montserrat,sans-serif"]
+      colors: {
+        blues: {
+          100: "#11468F"
+        }
       },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
