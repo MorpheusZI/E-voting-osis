@@ -7,8 +7,8 @@ export default function Thanks() {
 				Terimakasih telah voting. 😁
 			</h1>
 			<h3 className="sphone:text-sm text-sm mt-5 text-center font-semibold text-gray-300">
-				Jika anda melihat web page ini, berarti anda telah melakukan/submit
-				pilihan e-voting
+				Jika anda melihat Halaman, berarti anda telah melakukan/submit pilihan
+				e-voting
 			</h3>
 			<h1 className="text-sm mt-10 text-white">Made by Devaccto RPL</h1>
 		</div>

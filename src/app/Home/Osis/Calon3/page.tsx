@@ -63,7 +63,7 @@ export default function Osis1() {
 						layout="responsive"
 						className="mb-2 rounded-xl"></Image>
 					<h1 className="my-6 sphone:text-xl text-3xl text-white">
-						Dionisius Kraeng
+						Farel Permana
 					</h1>
 				</div>
 				<div className="flex sm:p-7 flex-col gap-[10vh] sphone:gap-5">
