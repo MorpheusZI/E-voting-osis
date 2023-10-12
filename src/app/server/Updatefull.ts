@@ -15,4 +15,5 @@ export default async function fullFil(Uid: number, Unama: string) {
 	if (updful) {
 		console.log("yok bisa yok");
 	}
+	return updful;
 }

@@ -1,5 +1,6 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { handlelog } from "../server/LogCheck";
 import Image from "next/image";
@@ -28,7 +29,14 @@ export default function Login() {
 			[name]: value,
 		});
 	};
-
+	const checkisvoted = () => {
+		if (user) {
+			user?.isvoted ? router.push("/Home/Thanks") : router.push("/Home");
+		}
+	};
+	useEffect(() => {
+		checkisvoted();
+	}, [user]);
 	const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
 		const formDataObject = new FormData();
@@ -36,29 +44,20 @@ export default function Login() {
 		formDataObject.append("password", formData.password);
 		const loggedIn = await handlelog(formDataObject);
 		const usr = formDataObject;
-
 		if (loggedIn) {
 			sessionStorage.setItem("user", JSON.stringify(loggedIn));
 			setUser(loggedIn);
-			const yapi = sessionStorage.getItem("yapi");
 			console.log(user?.isvoted);
-			setTimeout(() => {
-				if (user?.isvoted === true) {
-					router.push("/Home/Thanks");
-				} else {
-					router.push("/Home");
-				}
-			}, 2000);
 		} else {
 			setError("username atau password yang dimasukan salah");
 		}
 	};
 
 	return (
-		<div className="w-full flex flex-col items-center justify-center h-[60vh] mt-[130px] ">
+		<div className="w-full flex flex-col items-center justify-center h-[60%] mt-[130px] ">
 			<form
 				onSubmit={handleSubmit}
-				className="shadow-lg w-[80%] mt-[-1px] gap-6 border-none h-[150%] bg-gradient-to-r from-cyan-400 to-blue-600 sm:max-w-xs sm:px-6 sm:py-12 py-2 mx-4 pb-4 shadow-blue-400 flex flex-col border rounded-3xl items-center justify-around">
+				className="shadow-lg w-[80%] mt-[-1px] gap-6 border-none h-[250%] bg-gradient-to-r from-cyan-400 to-blue-600 sm:max-w-xs sm:px-6 sm:py-12 py-2 mx-4 pb-4 shadow-blue-400 flex flex-col border rounded-3xl items-center justify-around">
 				<div className="flex flex-wrap flex-row py-2 ps-2 shadow-blue-300 h-[17%] w-full ">
 					<Image
 						alt="SMK plus Pelita Nusantara"
@@ -96,7 +95,7 @@ export default function Login() {
 						type="text"
 						name="password"
 						id="password"
-						placeholder="YYYYMMDD"
+						placeholder="YYYYMMDD/NIG/Password"
 						value={formData.password}
 						onChange={handleChange}
 						className="px-3 py-2 border rounded-lg focus:ring-2 focus:outline-none focus:ring-blue-200 focus:shadow-green-200 focus:shadow-xl shadow-lg shadow-black-800"
@@ -114,7 +113,7 @@ export default function Login() {
 					</p>
 				)}
 				{error && (
-					<p className="text-red-600 text-[10px] px-3 py-1 w-[80%] text-center m-3 border-2 border-red-500 bg-white font-bold rounded-xl">
+					<p className="text-red-600 text-[10px] sphone:text-xl px-3 py-1 w-[80%] text-center m-3 border-2 border-red-500 bg-white font-bold rounded-xl">
 						{error}
 					</p>
 				)}
