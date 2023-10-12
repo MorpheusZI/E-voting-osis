@@ -3,7 +3,6 @@ import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 import { handlelog } from "../server/LogCheck";
 import Image from "next/image";
-
 interface User {
 	id: number;
 	nama: string;
@@ -41,7 +40,15 @@ export default function Login() {
 		if (loggedIn) {
 			sessionStorage.setItem("user", JSON.stringify(loggedIn));
 			setUser(loggedIn);
-			router.push("/Home");
+			const yapi = sessionStorage.getItem("yapi");
+			console.log(user?.isvoted);
+			setTimeout(() => {
+				if (user?.isvoted === true) {
+					router.push("/Home/Thanks");
+				} else {
+					router.push("/Home");
+				}
+			}, 2000);
 		} else {
 			setError("username atau password yang dimasukan salah");
 		}
@@ -75,8 +82,8 @@ export default function Login() {
 						id="nama"
 						value={formData.nama}
 						onChange={handleChange}
-						placeholder="Nama Lengkap"
-						className="px-3 py-2 border rounded-lg focus:ring-2 focus:outline-none focus:shadow-xl focus:shadow-green-200 focus:ring-blue-200 shadow-lg shadow-black-200 max-w-[25rem]"
+						placeholder="Username"
+						className="px-3 py-2 border rounded-lg focus:ring-2 focus:outline-none focus:shadow-xl focus:shadow-green-200 focus:ring-blue-200 shadow-lg shadow-black-200"
 					/>
 				</div>
 				<div className="mb-3 w-[83%] flex flex-col">
@@ -89,7 +96,7 @@ export default function Login() {
 						type="text"
 						name="password"
 						id="password"
-						placeholder="NIS/NIG/Password"
+						placeholder="YYYYMMDD"
 						value={formData.password}
 						onChange={handleChange}
 						className="px-3 py-2 border rounded-lg focus:ring-2 focus:outline-none focus:ring-blue-200 focus:shadow-green-200 focus:shadow-xl shadow-lg shadow-black-800"

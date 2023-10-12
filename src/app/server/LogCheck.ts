@@ -12,7 +12,7 @@ export async function handlelog(Fdata: FormData) {
       nama: namedat,
       NISN: passdat,
     },  
-  });
+  }); 
   Ldata ? console.log("yep") : console.log("nope");
   return Ldata;
 }

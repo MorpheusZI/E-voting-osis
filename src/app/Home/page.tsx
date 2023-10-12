@@ -3,17 +3,22 @@ import { useRef, useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { Montserrat } from "next/font/google";
+import fullFil from "../server/Updatefull";
+import { redirect } from "next/navigation";
+import { useRouter } from "next/navigation";
 
 interface User {
+	id: number;
 	nama: string;
 	pilihan_osis: number;
 	pilihan_mpk: number;
 }
 export default function Hom() {
 	//react hooks
+	const router = useRouter();
 	const displayOSref = useRef<HTMLDivElement>(null);
 	const displayMPKref = useRef<HTMLDivElement>(null);
-	const [user, setUser] = useState<User | null>(null);
+	const [user, setUser] = useState<User>();
 	let userOSISpick1 = false;
 	let userOSISpick2 = false;
 	let userOSISpick3 = false;
@@ -80,6 +85,14 @@ export default function Hom() {
 		displayMPKref.current?.classList.toggle("flex");
 		displayOSref.current?.classList.toggle("hidden");
 	};
+	const handlefullfil = () => {
+		if (user) {
+			fullFil(user?.id, user?.nama);
+			setTimeout(() => {
+				router.push("/Home/Thanks");
+			}, 400);
+		}
+	};
 	return (
 		<main className="bg-white text-black max-w-sphone container mx-auto">
 			<header className="container h-80 flex flex-col mb-10 bg-cover bg-no-repeat bg-center">
@@ -102,7 +115,7 @@ export default function Hom() {
 					</h1>
 				</div>
 			</header>
-			<main className="container min-h-fit pt-2 mb-[150px] mt-[5rem] px-1 sm:px-6 flex flex-col text-white">
+			<main className="container min-h-fit pt-2 mb-[150px] mt-[5rem] px-1 sm:px-6 flex flex-col items-center text-white">
 				<div className="flex justify-center">
 					<button
 						className="bg-blues-100 py-2 px-5 rounded-t-lg text-4xl font-semibold"
@@ -277,6 +290,11 @@ export default function Hom() {
 						</div>
 					</section>
 				</div>
+				<button
+					onClick={handlefullfil}
+					className="w-[80%] mt-[10rem] px-6 py-3 bg-gradient-to-l from-cyan-400 to-blue-500 rounded-2xl shadow-xl shadow-gray-500 sphone:text-3xl font-bold">
+					Submit Pilihan Saya!
+				</button>
 			</main>
 			<footer className="bg-blues-100 shadow-lg h-[9rem] flex flex-col gap-2 justify-center items-center dark:bg-gray-800">
 				<p className="text-sm text-gray-200">© SMK Plus Pelita Nusantara </p>

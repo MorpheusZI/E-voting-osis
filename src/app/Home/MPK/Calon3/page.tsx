@@ -63,7 +63,7 @@ export default function Osis1() {
 					<h1 className="text-3xl font-bold underline">Visi</h1>
 					<p className="text-lg ">
 						Menjadi organisasi unggulan dalam mengembangkan potensi, aspirasi,
-						minat dan hakat peserta didik dalam menjawab tantangan global.
+						minat dan bakat peserta didik dalam menjawab tantangan global.
 					</p>
 				</div>
 				<div className="flex flex-col gap-2">
