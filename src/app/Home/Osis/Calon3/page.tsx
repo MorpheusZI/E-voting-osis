@@ -101,6 +101,18 @@ export default function Osis1() {
 					<h1 className="text-3xl font-bold underline">Program Kerja</h1>
 					<ul className="space-y-4 mt-3 flex flex-col gap-4 list-disc list-inside dark:text-gray-400">
 						<li>
+							<span className="text-2xl">Jangka Pendek:</span>
+							<ul className="pl-5 text-lg flex flex-col gap-4  mt-2 space-y-1 list-decimal list-inside">
+								<li>Memperingati Hari Besar Nasional dan Keagamaan.</li>
+								<li>Pentas Seni Kreatif</li>
+								<li>Merayakan HUT PGRI</li>
+								<li>
+									PORSENI (Pekan Olahraga Seni) <br /> Mengadakan PORSENI
+									setelah Penilaian Akhir Tahun (PAT)
+								</li>
+							</ul>
+						</li>
+						<li>
 							<span className="text-2xl">Jangka Panjang: </span>
 							<ol className="pl-5 text-lg flex-col flex gap-4 mt-2 space-y-1 list-decimal list-inside">
 								<li>Melakukan program Study Banding</li>
@@ -118,21 +130,20 @@ export default function Osis1() {
 								</li>
 							</ol>
 						</li>
-						<li>
-							<span className="text-2xl">List item two</span>
-							<ul className="pl-5 text-lg flex flex-col gap-4  mt-2 space-y-1 list-decimal list-inside">
-								<li>memperingati hari besar nasional dan keagamaan</li>
-								<li>mengadakan talend day E-sport</li>
-								<li>memainkan lagu nasional pada jam istirahat</li>
-							</ul>
-						</li>
 					</ul>
 				</div>
-				<button
-					onClick={handleUpdate}
-					className="bg-black rounded-xl text-xl text-white px-10 py-3">
-					Pilih saya!
-				</button>
+				<div className="flex w-full items-center justify-between self-end gap-5">
+					<button
+						onClick={handleUpdate}
+						className="bg-cyan-400 font-semibold rounded-xl text-xl text-white px-3 sphone:px-8 py-3">
+						Pilih saya!
+					</button>
+					<Link
+						href={"/Home"}
+						className=" bg-blues-100 border-white-100 border-2 font-semibold rounded-xl text-xl text-white px-5 sphone:px-10 py-[10px]">
+						Kembali
+					</Link>
+				</div>
 			</div>
 		</div>
 	);

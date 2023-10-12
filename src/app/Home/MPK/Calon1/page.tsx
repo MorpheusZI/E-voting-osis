@@ -1,5 +1,5 @@
 "use client";
-import { updateOsis } from "@/app/server/UpdateOsis";
+import { updateMPK } from "@/app/server/UpdateMPK";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -14,7 +14,7 @@ interface user {
 export default function Osis1() {
 	const [user, setUser] = useState<user | null>(null);
 	const router = useRouter();
-	const OsisID: number = 1;
+	const MPKID: number = 1;
 	useEffect(() => {
 		const storedUser = sessionStorage.getItem("user");
 		if (storedUser) {
@@ -25,7 +25,7 @@ export default function Osis1() {
 	console.log(user);
 	const handleUpdate = async () => {
 		if (user) {
-			const Oupdated = await updateOsis(user.id, user.NISN, OsisID);
+			const Oupdated = await updateMPK(user.id, user.NISN, MPKID);
 			sessionStorage.setItem("user", JSON.stringify(Oupdated));
 			console.log(user);
 		}
@@ -34,7 +34,7 @@ export default function Osis1() {
 		}, 400);
 	};
 	return (
-		<div className="h-full bg-gradient-to-b text-white from-amber-300 via-yellow-400 to-yellow-600 sm:h-[80vh] gap-3 sm:flex-row flex-col p-7 sm:p-5 max-w-[100vw] flex">
+		<div className="h-full bg-gradient-to-b text-white from-crimson-100 via-crimson-200 to-crimson-300 sm:h-[80vh] gap-3 sm:flex-row flex-col p-7 sm:p-5 max-w-[100vw] flex">
 			<div className="flex flex-row mb-4 w-full items-center justify-between">
 				<Link href={"/Home"} className="align-center text-md font-bold">
 					{" "}
@@ -123,11 +123,18 @@ export default function Osis1() {
 						</li>
 					</ul>
 				</div>
-				<button
-					onClick={handleUpdate}
-					className="bg-black rounded-xl text-xl text-white px-10 py-3">
-					Pilih saya!
-				</button>
+				<div className="flex w-full items-center justify-between self-end gap-5">
+					<button
+						onClick={handleUpdate}
+						className="bg-red-400 font-semibold rounded-xl text-xl text-white px-3 sphone:px-8 py-3">
+						Pilih saya!
+					</button>
+					<Link
+						href={"/Home"}
+						className=" bg-transparent border-white-100 border-2 font-semibold rounded-xl text-xl text-white px-5 sphone:px-10 py-[10px]">
+						Kembali
+					</Link>
+				</div>
 			</div>
 		</div>
 	);

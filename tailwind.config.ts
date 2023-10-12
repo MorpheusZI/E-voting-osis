@@ -8,8 +8,8 @@ const config: Config = {
   ],
   theme: {
     screens: {
-      "phone": "400px",
-      "sphone" : "380px"
+      "phone": "500px",
+      "sphone" : "450px"
     },
     fontFamily: {
       montserrat :["Montserrat,sans-serif"]
@@ -18,6 +18,11 @@ const config: Config = {
       colors: {
         blues: {
           100: "#11468F"
+        },
+        crimson: {
+          100: "#800000", 
+          200: "#620000",
+          300: "#450000",
         }
       },
       backgroundImage: {
@@ -28,6 +33,8 @@ const config: Config = {
       },
     },
   },
-  plugins: [],
+  plugins: [
+    require('tailwindcss-animated')
+  ],
 }
 export default config

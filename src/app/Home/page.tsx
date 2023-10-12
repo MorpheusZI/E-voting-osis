@@ -59,19 +59,29 @@ export default function Hom() {
 
 	//JS window functions
 	const handledisplayOSIS = () => {
+		setTimeout(() => {
+			displayMPKref.current?.classList.toggle("hidden");
+		}, 300);
 		displayOSref.current?.classList.remove("hidden");
 		displayOSref.current?.classList.toggle("flex");
-		displayMPKref.current?.classList.toggle("hidden");
+		displayMPKref.current?.classList.toggle("animate-fade-left");
+		setTimeout(() => {
+			displayOSref.current?.classList.remove("animate-fade-right");
+		}, 500);
 		displayMPKref.current?.classList.remove("flex");
 	};
 	const handledisplayMPK = () => {
-		displayOSref.current?.classList.toggle("hidden");
 		displayOSref.current?.classList.remove("flex");
+		displayOSref.current?.classList.toggle("animate-fade-right");
+		setTimeout(() => {
+			displayMPKref.current?.classList.remove("animate-fade-left");
+		}, 500);
 		displayMPKref.current?.classList.remove("hidden");
 		displayMPKref.current?.classList.toggle("flex");
+		displayOSref.current?.classList.toggle("hidden");
 	};
 	return (
-		<main className="bg-white text-black max-w-phone container mx-auto">
+		<main className="bg-white text-black max-w-sphone container mx-auto">
 			<header className="container h-80 flex flex-col mb-10 bg-cover bg-no-repeat bg-center">
 				<nav className="flex text-white items-center justify-between bg-blue-500 px-2 py-4 pe-[20px]">
 					<div className="flex items-center">
@@ -100,7 +110,7 @@ export default function Hom() {
 						OSIS
 					</button>
 					<button
-						className="bg-amber-500 py-2 px-5 rounded-t-lg text-4xl font-semibold"
+						className="bg-red-700 py-2 px-5 rounded-t-lg text-4xl font-semibold"
 						onClick={handledisplayMPK}>
 						MPK
 					</button>
@@ -109,7 +119,7 @@ export default function Hom() {
 					className="flex flex-col gap-[60px] px-1 pb-7 py-6 bg-blues-100 sphone:bg-gradient-to-t from-cyan-400 to-blue-500 shadow-xl shadow-blue-300 rounded-xl items-center w-[100%] sm:w-[70%]"
 					id="osis"
 					ref={displayOSref}>
-					<h1 className="text-md mb-[-2rem] text-white">
+					<h1 className="text-xs mb-[-2rem] text-white">
 						Klik salah satu kandidat untuk memilih !
 					</h1>
 					<section
@@ -131,7 +141,7 @@ export default function Hom() {
 										className=""
 									/>
 								</div>
-								<h2 className="text-xl text-white font-bold mt-[20px] mb-[10vw]">
+								<h2 className="text-3xl text-white font-bold mt-[20px] mb-[10vw]">
 									Dionisius Kraeng
 								</h2>
 							</Link>
@@ -155,7 +165,7 @@ export default function Hom() {
 										layout="responsive"
 									/>
 								</div>
-								<h2 className="text-xl text-white font-bold mt-[20px] mb-[10vw]">
+								<h2 className="text-3xl text-white font-bold mt-[20px] mb-[10vw]">
 									Anita Widayanti
 								</h2>
 							</Link>
@@ -179,7 +189,7 @@ export default function Hom() {
 										layout="responsive"
 									/>
 								</div>
-								<h2 className="text-xl text-white font-bold mt-[20px] mb-[10vw]">
+								<h2 className="text-3xl text-white font-bold mt-[20px] mb-[10vw]">
 									Farel Permana
 								</h2>
 							</Link>
@@ -187,13 +197,18 @@ export default function Hom() {
 					</section>
 				</div>
 				<div
-					className="hidden flex-col gap-[60px] px-1 pb-7 py-6 bg-amber-500 shadow-xl shadow-yellow-300 rounded-xl items-center w-[100%] sm:w-[70%]"
+					className="hidden flex-col gap-[60px] px-1 pb-7 py-6 bg-red-700 shadow-xl shadow-yellow-300 rounded-xl items-center w-[100%] sm:w-[70%]"
 					id="mpk"
 					ref={displayMPKref}>
 					<h1 className="text-md mb-[-2rem] text-white">
 						Klik salah satu kandidat untuk memilih !
 					</h1>
-					<section className="bg-gradient-to-b px-5 from-yellow-400 to-amber-500  shadow-xl rounded-xl phone:p-8 w-[90%] phone:w-[80]">
+					<section
+						className={
+							userMPKpick1
+								? "bg-gradient-to-b from-lime-400 px-4 to-green-700 shadow-xl rounded-xl phone:p-8 w-[90%] phone:w-[80]"
+								: "bg-gradient-to-b from-red-400 px-4 to-red-700 shadow-xl rounded-xl phone:p-8 w-[90%] phone:w-[80] "
+						}>
 						<div className="text-center">
 							<h1 className="text-3xl my-6 text-white font-bold">Kandidat 1</h1>
 							<Link href="/Home/MPK/Calon1" className="cursor-pointer">
@@ -207,16 +222,21 @@ export default function Hom() {
 										className=""
 									/>
 								</div>
-								<h2 className="text-xl text-white font-bold mt-[20px] mb-[10vw]">
+								<h2 className="text-3xl text-white font-bold mt-[20px] mb-[10vw]">
 									Che Lattoe Castro P.
 								</h2>
 							</Link>
 						</div>
 					</section>
-					<section className="bg-gradient-to-b px-5 from-yellow-400 to-amber-500  shadow-xl rounded-xl phone:p-8 w-[90%] phone:w-[80]">
+					<section
+						className={
+							userMPKpick2
+								? "bg-gradient-to-b from-lime-400 px-4 to-green-700 shadow-xl rounded-xl phone:p-8 w-[90%] phone:w-[80]"
+								: "bg-gradient-to-b from-red-400 px-4 to-red-700 shadow-xl rounded-xl phone:p-8 w-[90%] phone:w-[80] "
+						}>
 						<div className="text-center">
 							<h1 className="text-3xl my-6 text-white font-bold">Kandidat 2</h1>
-							<Link href="/Home/Osis/Calon1" className="cursor-pointer">
+							<Link href="/Home/MPK/Calon2" className="cursor-pointer">
 								<div className="bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition duration-300 ease-in-out">
 									<Image
 										src="/MPKimg/MPK-2-2.jpg"
@@ -226,16 +246,21 @@ export default function Hom() {
 										layout="responsive"
 									/>
 								</div>
-								<h2 className="text-xl text-white font-bold mt-[20px] mb-[10vw]">
+								<h2 className="text-3xl text-white font-bold mt-[20px] mb-[10vw]">
 									Naila Amaliyah
 								</h2>
 							</Link>
 						</div>
 					</section>
-					<section className="bg-gradient-to-b px-5 from-yellow-400 to-amber-500  shadow-xl rounded-xl phone:p-8 w-[90%] phone:w-[80]">
+					<section
+						className={
+							userMPKpick3
+								? "bg-gradient-to-b from-lime-400 px-4 to-green-700 shadow-xl rounded-xl phone:p-8 w-[90%] phone:w-[80]"
+								: "bg-gradient-to-b from-red-400 px-4 to-red-700 shadow-xl rounded-xl phone:p-8 w-[90%] phone:w-[80] "
+						}>
 						<div className="text-center">
-							<h1 className="text-3xl my-6 text-white font-bold">Kandidat 2</h1>
-							<Link href="/Home/Osis/Calon1" className="cursor-pointer">
+							<h1 className="text-3xl my-6 text-white font-bold">Kandidat 3</h1>
+							<Link href="/Home/MPK/Calon3" className="cursor-pointer">
 								<div className="bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition duration-300 ease-in-out">
 									<Image
 										src="/MPKimg/MPK-3-1.jpg"
@@ -245,7 +270,7 @@ export default function Hom() {
 										layout="responsive"
 									/>
 								</div>
-								<h2 className="text-xl text-white font-bold mt-[20px] mb-[10vw]">
+								<h2 className="text-3xl text-white font-bold mt-[20px] mb-[10vw]">
 									Zusril Indra Bramanta
 								</h2>
 							</Link>

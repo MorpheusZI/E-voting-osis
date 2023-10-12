@@ -56,7 +56,7 @@ export default function Osis1() {
 					className="mb-2 rounded-xl"></Image>
 				<h1 className="my-6 text-3xl text-slate-50">Dionisius Kraeng</h1>
 			</div>
-			<div className="flex sm:p-7 flex-col gap-[10vh]">
+			<div className="flex items-center sm:p-7 flex-col gap-[10vh]">
 				<div className="flex flex-col gap-2">
 					<h1 className="text-3xl font-bold underline">Visi</h1>
 					<p className="text-lg ">
@@ -120,11 +120,18 @@ export default function Osis1() {
 						</li>
 					</ul>
 				</div>
-				<button
-					onClick={handleUpdate}
-					className="bg-black rounded-xl text-xl text-white px-10 py-3">
-					Pilih saya!
-				</button>
+				<div className="flex w-full items-center justify-between self-end gap-5">
+					<button
+						onClick={handleUpdate}
+						className="bg-cyan-400 font-semibold rounded-xl text-xl text-white px-3 sphone:px-8 py-3">
+						Pilih saya!
+					</button>
+					<Link
+						href={"/Home"}
+						className=" bg-blues-100 border-white-100 border-2 font-semibold rounded-xl text-xl text-white px-5 sphone:px-10 py-[10px]">
+						Kembali
+					</Link>
+				</div>
 			</div>
 		</div>
 	);

@@ -1,9 +1,9 @@
 "use client";
-import { updateOsis } from "@/app/server/UpdateOsis";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import Image from "next/image";
+import { updateMPK } from "@/app/server/UpdateMPK";
 interface user {
 	id: number;
 	nama: string;
@@ -14,7 +14,7 @@ interface user {
 export default function Osis1() {
 	const [user, setUser] = useState<user | null>(null);
 	const router = useRouter();
-	const OsisID: number = 1;
+	const OsisID: number = 3;
 	useEffect(() => {
 		const storedUser = sessionStorage.getItem("user");
 		if (storedUser) {
@@ -25,7 +25,7 @@ export default function Osis1() {
 	console.log(user);
 	const handleUpdate = async () => {
 		if (user) {
-			const Oupdated = await updateOsis(user.id, user.NISN, OsisID);
+			const Oupdated = await updateMPK(user.id, user.NISN, OsisID);
 			sessionStorage.setItem("user", JSON.stringify(Oupdated));
 			console.log(user);
 		}
@@ -34,7 +34,7 @@ export default function Osis1() {
 		}, 400);
 	};
 	return (
-		<div className="h-full bg-gradient-to-b text-white from-amber-300 via-yellow-400 to-yellow-600 sm:h-[80vh] gap-3 sm:flex-row flex-col p-7 sm:p-5 max-w-[100vw] flex">
+		<div className="h-full bg-gradient-to-b text-white from-crimson-100 via-crimson-200 to-crimson-300 sm:h-[80vh] gap-3 sm:flex-row flex-col p-7 sm:p-5 max-w-[100vw] flex">
 			<div className="flex flex-row mb-4 w-full items-center justify-between">
 				<Link href={"/Home"} className="align-center text-md font-bold">
 					{" "}
@@ -48,43 +48,43 @@ export default function Osis1() {
 			</div>
 			<div className="flex flex-col w-full items-center sm:w-[80vw] sm:h-full">
 				<Image
-					alt="Kandidat 1"
-					src={"/MPKimg/MPK-1-2.jpg"}
+					alt="Kandidat 3"
+					src={"/MPKimg/MPK-3-2.jpg"}
 					width={50}
 					height={50}
 					layout="responsive"
 					className="mb-2 rounded-xl"></Image>
-				<h1 className="my-6 text-3xl text-slate-50">Che Lattoe Castro P.</h1>
+				<h1 className="my-6 text-xl font-bold sphone:text-3xl text-slate-50">
+					Zusril Indah Bramanta
+				</h1>
 			</div>
 			<div className="flex sm:p-7 flex-col gap-[10vh]">
 				<div className="flex flex-col gap-2">
 					<h1 className="text-3xl font-bold underline">Visi</h1>
 					<p className="text-lg ">
-						Mengoptimalkan fungsi MPK dalam segi pengawasan atas kinerja
-						Organisasi pelajar SMK Plus Pelita Nusantara untuk terealisasinya
-						organisasi yang bersinergi dan berintegritas tinggi
+						Menjadi organisasi unggulan dalam mengembangkan potensi, aspirasi,
+						minat dan hakat peserta didik dalam menjawab tantangan global.
 					</p>
 				</div>
 				<div className="flex flex-col gap-2">
 					<h1 className="text-3xl font-bold underline">Misi</h1>
 					<ul className="list-inside list-disc text-lg flex flex-col gap-[2rem]">
+						<li>Mengoptimalkan sistem administrasi.</li>
 						<li>
-							Membangun dan menumbuhkan rasa kekeluargaan, keharmonisan antar
-							pengurus MPK/OSIS
+							Memberikan bimbingan dan motivasi kepada siswa untuk mencapai
+							prestasi yang maksimal.
 						</li>
 						<li>
-							Mengoptimalkan MPK SMK Plus Pelita Nusantara dalam menangani
-							Ekstrakurikuler dan Talentday.
+							Membangun hubungan, koordinasi dan sinkronisasi informasi dengan
+							guru dan siswa sekolah.
 						</li>
 						<li>
-							Bersinergi dan bekerja sama dalam menyukseskan program kerja OSIS
-							ataupun sekolah
+							Merealisasikan anggota MPK/OSIS yang berkompetensi di bidang
+							kepemimpinan dan keorganisasian.
 						</li>
-						<li>Membangun hubungan baik antar pengurus kelas.</li>
 						<li>
-							Mengoptimalkan MPK sabagai wadah dimana siswa/I SMK Plus Pelita
-							Nusantara dapat menyampaikan aspirasi maupun kritik untuk kemajuan
-							sekolah dan organisasi sekolah
+							Meningkatkan soft skill pelajar (public speaking, bahasa,
+							management, leadership)
 						</li>
 					</ul>
 				</div>
@@ -94,40 +94,43 @@ export default function Osis1() {
 						<li>
 							<span className="text-2xl">Jangka Pendek: </span>
 							<ol className="pl-5 text-lg flex-col flex gap-4 mt-2 space-y-1 list-decimal list-inside">
+								<li>Melakukan pengawasan terhadap ekskul dan talent</li>
 								<li>
-									Menampung aspirasi siswa/I melalui google form dan e-mail
+									Merancang peraturan mengenai pengrekrutan calon pengurus
+									MPK/OSIS;
 								</li>
+								<li>Mengadakan rapat antar bph MPK dan OSIS</li>
+								<li>Membuat peraturan mengenai calon pengurus MPK dan OSIS</li>
 								<li>
-									Mengadakan rapat koordinator pengurus MPK setiap 1 bulan
-									sekali;
-								</li>
-								<li>Mengadakan rapat BPH MPK-OSIS setiap 2 bulan sekali</li>
-								<li>
-									Mengadakan pertemuan antar ketua dari masing-masing
-									Ekstrakurikuler dan Talentday
-								</li>
-								<li>
-									Mengadakan rapat antar pengurus kelas setiap 3 bulan sekali
+									Memberi rekomendasi mengenai perlombaan untuk ekstrakurikuler
+									dan talent day .
 								</li>
 							</ol>
 						</li>
 						<li>
 							<span className="text-2xl">Jangka Panjang:</span>
 							<ul className="pl-5 text-lg flex flex-col gap-4  mt-2 space-y-1 list-decimal list-inside">
-								<li>Mengadakan Musyawarah Kerja (MUKER);</li>
-								<li>Mengadakan Musyawarah Besar (MUBES)</li>
-								<li>Mengadakan sidang PLENO;</li>
+								<li>Mengadakan sidang PLENO ;</li>
+								<li>Mengadakan Komisi Pemilihan Umum [KPU]</li>
+								<li>Mengadakan Musyawarah Besar [MUBES]</li>
+								<li>Mengadakan Musyawarah Kerja [MUKER]</li>
 								<li>Mengadakan Laporan Pertanggung Jawaban (LPJ)</li>
-								<li>Mengadakan Komisi Pemilihan Umum (KPU);</li>
 							</ul>
 						</li>
 					</ul>
 				</div>
+			</div>
+			<div className="flex w-full items-center mt-4 justify-between self-end gap-5">
 				<button
 					onClick={handleUpdate}
-					className="bg-black rounded-xl text-xl text-white px-10 py-3">
+					className="bg-red-400 font-semibold rounded-xl text-xl text-white px-3 sphone:px-8 py-3">
 					Pilih saya!
 				</button>
+				<Link
+					href={"/Home"}
+					className=" bg-transparent border-white-100 border-2 font-semibold rounded-xl text-xl text-white px-5 sphone:px-10 py-[10px]">
+					Kembali
+				</Link>
 			</div>
 		</div>
 	);
