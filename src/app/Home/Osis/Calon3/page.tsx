@@ -27,8 +27,7 @@ export default function Osis1() {
 		if (storedUser) {
 			setUser(JSON.parse(storedUser));
 		}
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [1000]);
+	}, []);
 	console.log(user);
 	const handleUpdate = async () => {
 		if (user) {
