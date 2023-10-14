@@ -11,8 +11,8 @@ export default function Thanks() {
 	useEffect(() => {
 		let intervalId: any;
 
-		sessionStorage.removeItem("user");
 		if (count > 0) {
+			sessionStorage.removeItem("user");
 			intervalId = setInterval(() => {
 				setCount((prevCount) => prevCount - 1);
 			}, 1000);

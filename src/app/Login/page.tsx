@@ -21,7 +21,7 @@ export default function Login() {
 		nama: "",
 		password: "",
 	});
-	const [error, setError] = useState("");
+	const [error, setError] = useState<null | string>(null);
 
 	const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		const { name, value } = e.target;
@@ -52,6 +52,7 @@ export default function Login() {
 		if (loggedIn) {
 			sessionStorage.setItem("user", JSON.stringify(loggedIn));
 			setUser(loggedIn);
+			setError(null);
 			console.log(user?.isvoted);
 		} else {
 			setError("username atau password yang dimasukan salah");
