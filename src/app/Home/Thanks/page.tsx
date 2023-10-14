@@ -11,6 +11,7 @@ export default function Thanks() {
 	useEffect(() => {
 		let intervalId: any;
 
+		sessionStorage.removeItem("user");
 		if (count > 0) {
 			intervalId = setInterval(() => {
 				setCount((prevCount) => prevCount - 1);
@@ -25,7 +26,6 @@ export default function Thanks() {
 	}, [count]);
 	useEffect(() => {
 		if (count == 0) {
-			sessionStorage.removeItem("user");
 			router.push("/Login");
 		}
 	}, [count, router]);
