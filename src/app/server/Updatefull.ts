@@ -14,7 +14,9 @@ export default async function fullFil(Uid: number, Unama: string) {
 	});
 	if (updful) {
 		console.log(
-			"User Submitted data with : " + "Kandidat Osis = " + updful.pilihan_osis,
+			"User ",
+			updful.nama,
+			" Submitted data with : " + "Kandidat Osis = " + updful.pilihan_osis,
 			"Kandidat MPK = " + updful.pilihan_mpk
 		);
 	}
