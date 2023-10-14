@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 "use client";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useRouter } from "next/navigation";
 import { handlelog } from "../server/LogCheck";
 import Image from "next/image";
@@ -16,6 +16,7 @@ interface User {
 export default function Login() {
 	const [user, setUser] = useState<User | null>(null);
 	const router = useRouter();
+	const displayloadz = useRef<HTMLDivElement>(null);
 	const [formData, setFormData] = useState({
 		nama: "",
 		password: "",
@@ -28,6 +29,10 @@ export default function Login() {
 			...formData,
 			[name]: value,
 		});
+	};
+	const displayload = () => {
+		displayloadz.current?.classList.toggle("block");
+		displayloadz.current?.classList.remove("hidden");
 	};
 	const checkisvoted = () => {
 		if (user) {
@@ -104,8 +109,14 @@ export default function Login() {
 				<input
 					type="submit"
 					value="Login"
+					onClick={displayload}
 					className="text-white mb-5 text-xl py-2 px-6 bg-transparent border rounded-xl"
 				/>
+				<div ref={displayloadz} className="hidden">
+					<h1 className="text-xl font-semibold text-white animate-pulse">
+						Checking server...
+					</h1>
+				</div>
 				{user && (
 					<p className="text-md text-white">
 						{" "}
